@@ -7,10 +7,11 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 
 export class UsersListComponent {
-//passing data from parent to child
+// passing data from parent to child
   @Input() users;
-//passing data from child to parent
+// passing data from child to parent
   @Output() removeUser = new EventEmitter();
+  @Output() addUserEvent = new EventEmitter();
 
   newUserName = '';
   // moving to app.component.ts and using @Input instead
@@ -43,13 +44,7 @@ export class UsersListComponent {
   }
 
   addUser(): void {
-    const uniqueId = Math.random().toString(16);
-    const newUser = {
-      id: uniqueId,
-      name: this.newUserName,
-      age: 30
-    };
-    this.users.push(newUser);
+    this.addUserEvent.emit(this.newUserName);
 // sets value to empty string
     this.newUserName = '';
   }
