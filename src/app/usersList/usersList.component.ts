@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {UserInterface} from '../types/user.interface';
 
 @Component({
   selector: 'app-users-list',
@@ -8,10 +9,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 export class UsersListComponent {
 // passing data from parent to child
-  @Input() users;
+  @Input() users: UserInterface[];
 // passing data from child to parent
-  @Output() removeUser = new EventEmitter();
-  @Output() addUserEvent = new EventEmitter();
+  @Output() removeUser = new EventEmitter<string>();
+  @Output() addUserEvent = new EventEmitter<string>();
 
   newUserName = '';
   // moving to app.component.ts and using @Input instead
