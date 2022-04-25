@@ -1,31 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserInterface} from './types/user.interface';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
   title = 'User List';
 
-  users: UserInterface[] = [
-    {
-      id: '1',
-      name: 'Jack',
-      age: 21
-    },
-    {
-      id: '2',
-      name: 'John',
-      age: 25
-    },
-    {
-      id: '3',
-      name: 'Sam',
-      age: 29
-    }
-  ];
+  users: UserInterface[] = [];
+
+  constructor(private http: HttpClient) {
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit');
+    this.http.get('http://localhost:3000/users').subscribe((users: UserInterface[]) => {
+      console.log('res', users);
+      this.users = users;
+    });
+  }
 
   removeUser(id: string): void {
     // deleting user by id
