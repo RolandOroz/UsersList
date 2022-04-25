@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserInterface} from './types/user.interface';
-import {HttpClient} from '@angular/common/http';
 import {UsersService} from './services/users.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class AppComponent implements OnInit {
 
   users: UserInterface[] = [];
 
-  constructor(private http: HttpClient, private usersService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((users: UserInterface[]) => {
@@ -24,16 +23,21 @@ export class AppComponent implements OnInit {
 
   removeUser(id: string): void {
     // deleting user by id
-    this.users = this.users.filter(user => user.id !== id);
+    this.usersService.removeUser(id).subscribe(() => {
+      console.log('deleted from backend');
+      this.users = this.users.filter(user => user.id !== id);
+    });
   }
 
   addUser(name: string): void {
-    const uniqueId = Math.random().toString(16);
-    const newUser: UserInterface = {
-      id: uniqueId,
-      name,
-      age: 30
-    };
-    this.users.push(newUser);
+    this.usersService.addUser(name).subscribe(newUser => {
+      this.users.push(newUser);
+    });
+    // const uniqueId = Math.random().toString(16);
+    // const newUser: UserInterface = {
+    //   id: uniqueId,
+    //   name,
+    //   age: 30
+    // };
   }
 }

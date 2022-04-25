@@ -11,6 +11,18 @@ export  class UsersService {
   getUsers(): Observable<UserInterface[]> {
     return this.http.get<UserInterface[]>('http://localhost:3000/users');
   }
+
+  removeUser(id: string): Observable<{}> {
+    return this.http.delete(`http://localhost:3000/users/${id}`);
+  }
+
+  addUser(name: string): Observable<UserInterface> {
+    const user = {
+      name,
+      age: 30
+    };
+    return this.http.post<UserInterface>('http://localhost:3000/users', user);
+  }
 }
 
 
