@@ -1,25 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {UserInterface} from './types/user.interface';
 import {HttpClient} from '@angular/common/http';
+import {UsersService} from './services/users.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   title = 'User List';
 
   users: UserInterface[] = [];
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private usersService: UsersService) {}
 
   ngOnInit(): void {
-    console.log('ngOnInit');
-    this.http.get('http://localhost:3000/users').subscribe((users: UserInterface[]) => {
-      console.log('res', users);
+    this.usersService.getUsers().subscribe((users: UserInterface[]) => {
       this.users = users;
     });
   }

@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {UsersListModule} from 'src/app/usersList/usersList.module';
+import {UsersService} from './services/users.service';
 
 @NgModule({
   declarations: [
@@ -13,10 +14,10 @@ import {UsersListModule} from 'src/app/usersList/usersList.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UsersListModule,
-    HttpClientModule
+    HttpClientModule,
+    UsersListModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
