@@ -15,30 +15,6 @@ export class UsersListComponent {
   @Output() addUserEvent = new EventEmitter<string>();
 
   newUserName = '';
-  // moving to app.component.ts and using @Input instead
-  // users = [
-  //   {
-  //     id: '1',
-  //     name: 'Jack',
-  //     age: 21
-  //   },
-  //   {
-  //     id: '2',
-  //     name: 'John',
-  //     age: 25
-  //   },
-  //   {
-  //     id: '3',
-  //     name: 'Sam',
-  //     age: 29
-  //   }
-  // ];
-
-// moving to app.component.ts and using @Output instead
-//   removeUser(id: string): void {
-//     // deleting user by id
-//     this.users = this.users.filter(user => user.id !== id);
-//   }
 
   setNewUserName(userName: string): void {
     this.newUserName = userName;

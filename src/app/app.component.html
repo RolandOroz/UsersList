@@ -1,6 +1,11 @@
-<h1>User List</h1>
+<h1>Users List</h1>
 <app-users-list
   [users]="users"
   (removeUser)="removeUser($event)"
   (addUserEvent)="addUser($event)"
 ></app-users-list>
+
+<a routerLink="/login">Login</a>
+<br />
+<a routerLink="/register">Register</a>
+<router-outlet></router-outlet>
