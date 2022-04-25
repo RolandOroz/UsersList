@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersService.getUsers().subscribe((users: UserInterface[]) => {
+      console.log('users', users);
       this.users = users;
     });
   }

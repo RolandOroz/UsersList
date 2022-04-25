@@ -2,7 +2,7 @@
 <button (click)="addUser()">Add User</button>
 <div class="user-container" *ngFor="let user of users">
   <span>
-    {{user.name}} is {{user.age}} years old
+    {{user.name}} is {{user.age}}
   </span>
   <span (click)="removeUser.emit(user.id)">Remove</span>
 </div>
